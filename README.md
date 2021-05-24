@@ -1,6 +1,9 @@
 # notion-appsscript
 
 This is a simple wrapper around the Notion API for creating a internal integration that works in Google Apps Script at https://script.google.com/. 
+
+With Google App Script, it's quick and easy to schedule javascript code to run on a regular basis, and you don't have to worry about any hosting logistics or keeping software up to date.
+
 See https://www.notion.so/my-integrations to create an integration.
 
 ## NotionDB
