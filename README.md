@@ -98,3 +98,7 @@ Use `NotionFilterCondition` and `NotionFilterTypes` enums for filter types and c
     })
   }
 ```
+
+
+# Storing the Secret
+I store the *Internal Integration Token* in the script properties.  For some reason, Google google doesn't show these on current editor, so just click the **Use legacy editor** button, then go to **File** > **Project Properties** > **Script Properties** and add a property. Don't forget click the **Use the new editor** button afterwards, as it's much better.
