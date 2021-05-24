@@ -21,7 +21,7 @@ class NotionDB {
 ## NotionProp
 Create or update property values
 ```javascript
-class NotionProp
+class NotionProp {
   static date(start, end = null);
   static datetime(start, end = null);
   static title(content);
@@ -30,6 +30,7 @@ class NotionProp
   static checkbox(boolean);
   static url(address);
   static email(address);
+}
 ```
 
 ## Filtering
