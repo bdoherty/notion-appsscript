@@ -22,10 +22,11 @@ function updateResonanceCalendar() {
 
 function createDaysWeeksAndMonths() {
 
+  const notionDB = new NotionDB(PropertiesService.getScriptProperties().getProperty('notion-secret'));
+
   const today = new Date();
   const {weekStart, weekEnd, weekName} = dayToWeek(today);
 
-  const notionDB = new NotionDB(PropertiesService.getScriptProperties().getProperty('notion-secret'));
   let week = notionDB.get('Week', weekName)
   if(week == null) {
     week = notionDB.create('Week', {

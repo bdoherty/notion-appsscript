@@ -123,7 +123,7 @@ class NotionDB {
 
 
 /*
-Wrappers to create property values
+Wrappers to create or update property values
 https://developers.notion.com/reference/page#page-property-value
 */
 class NotionProp {
