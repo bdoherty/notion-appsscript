@@ -4,6 +4,8 @@ This is a simple wrapper around the Notion API for creating a internal integrati
 
 With Google App Script, it's quick and easy to schedule javascript code to run on a regular basis, and you don't have to worry about any hosting logistics or keeping software up to date.
 
+![Google Apps Script Screenshot](https://user-images.githubusercontent.com/335468/119423521-92585900-bd57-11eb-8ae5-e6c4ea24aae8.png)
+
 See https://www.notion.so/my-integrations to create an integration.
 
 ## NotionDB
