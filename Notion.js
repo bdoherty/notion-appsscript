@@ -5,8 +5,11 @@ class NotionDB {
    * @param {string} secret - The secret to access your internal integration, see https://www.notion.so/my-integrations
   */
   constructor(secret) {
+    if(secret == null) {
+      throw 'Secret must be provided'
+    }
     this.secret = secret;
-    this.databases = this.listDatabases(); 
+    this.databases = this.listDatabases();
   }
 
   listDatabases() {
@@ -14,6 +17,7 @@ class NotionDB {
     const response = UrlFetchApp.fetch(url, {
       method: 'post',
       contentType: 'application/json',    
+      muteHttpExceptions: true,
       headers: {
         Authorization: `Bearer ${this.secret}`,
         "Notion-Version": "2021-05-13"
@@ -25,6 +29,11 @@ class NotionDB {
         }
       })
     });
+    if(response.getResponseCode() != 200) {
+      console.error(response.getContentText());
+      throw `Error listing databases`
+    }
+
     const { results = [] } = JSON.parse(response.getContentText());
     const databases = results
       .map(({ id, title: [{ plain_text: title }] }) => ({ id, title }))
@@ -52,6 +61,10 @@ class NotionDB {
         properties: properties
       }),
     });
+    if(response.getResponseCode() != 200) {
+      console.error(response.getContentText());
+      throw `Error updating page ${page_id}`
+    }
     console.log(response.getContentText());
     return JSON.parse(response.getContentText());
   }
@@ -80,15 +93,12 @@ class NotionDB {
       payload: JSON.stringify(payload)
     });
 
-
-    if(response.getResponseCode() == 200) {
-      const {results = []} = JSON.parse(response.getContentText());
-      return results;
-    } else {
+    if(response.getResponseCode() != 200) {
       console.error(response.getContentText());
       throw `Error quering ${database_name}`
     }
-
+    const {results = []} = JSON.parse(response.getContentText());
+    return results;
   }
 
   /*
@@ -112,12 +122,11 @@ class NotionDB {
       })
     });
 
-    if(response.getResponseCode() == 200) {
-      return JSON.parse(response.getContentText());
-    } else {
+    if(response.getResponseCode() != 200) {
       console.error(response.getContentText());
       throw `Error creating ${database_name}`
     }
+    return JSON.parse(response.getContentText());
   }
 }
 
